@@ -13,8 +13,8 @@ public class LoginPage extends BasePage {
     private final By passwordField = By.name("password");
     private final By submitButton = By.cssSelector("input[type=\"submit\"]");
 
-    public void logIn() {
-        waitElementIsVisible(driver.findElement(loginField)).sendKeys("standard_user");
+    public void logIn(String user_login) {
+        waitElementIsVisible(driver.findElement(loginField)).sendKeys(user_login);
         waitElementIsVisible(driver.findElement(passwordField)).sendKeys("secret_sauce");
         waitElementIsVisible(driver.findElement(submitButton)).click();
     }
