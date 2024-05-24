@@ -14,6 +14,7 @@ public class Constant {
     }
     public static class StandardUser {
         static Dotenv dotenv = Dotenv.load();
+        public static final String STANDARD_LOGIN = dotenv.get("LOGIN");
         public static final String STANDARD_PASSWORD = dotenv.get("PASSWORD");
     }
 }

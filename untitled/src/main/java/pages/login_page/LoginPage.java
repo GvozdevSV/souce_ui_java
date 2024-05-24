@@ -11,6 +11,7 @@ public class LoginPage extends BasePage {
     private final By loginField = By.id("user-name");
     private final By passwordField = By.name("password");
     private final By submitButton = By.cssSelector("input[type=\"submit\"]");
+    private final By errorMessage = By.xpath("//h3[@data-test=\"error\"]");
 
     // Заполнение полей авторизации
     public void logIn(String user_login, String password) {
@@ -18,9 +19,15 @@ public class LoginPage extends BasePage {
         waitElementIsVisible(driver.findElement(passwordField)).sendKeys(password);
         waitElementIsVisible(driver.findElement(submitButton)).click();
     }
-    //
+    // Проверка наличия кнопки SUBMIT
     public boolean checkLogin() {
         return elementIsVisible(submitButton);
     }
+    // Получение текста ошибки
+    public String getErrorMessage() {
+        return waitElementIsVisible(driver.findElement(errorMessage)).getText();
+
+    }
+
 
 }
