@@ -54,4 +54,28 @@ public class LoginTests extends BaseTest {
         );
     }
 
+    // Авторизация с пустым логином
+    @Test(description="Авторизация с пустым логином", groups="regress")
+    public void emptyLogin() {
+        basePage.open(BASE_URL);
+        loginPage.logIn("", STANDARD_PASSWORD);
+        Assert.assertEquals(
+                loginPage.getErrorMessage(),
+                "Epic sadface: Username is required",
+                "Сообщение не появилось или не корректно"
+        );
+    }
+
+    // Авторизация с пустым паролем
+    @Test(description="Авторизация с пустым паролем", groups="regress")
+    public void emptyPassword() {
+        basePage.open(BASE_URL);
+        loginPage.logIn(STANDARD_LOGIN, "");
+        Assert.assertEquals(
+                loginPage.getErrorMessage(),
+                "Epic sadface: Password is required",
+                "Сообщение не появилось или не корректно"
+        );
+    }
+
 }
