@@ -6,7 +6,9 @@ import org.testng.annotations.Test;
 import tests.base_test.BaseTest;
 
 
+import static constants.Constant.StandardUser.STANDARD_PASSWORD;
 import static constants.Constant.Urls.BASE_URL;
+
 
 public class LoginTests extends BaseTest {
 
@@ -22,10 +24,14 @@ public class LoginTests extends BaseTest {
         };
     }
     // Тест корректная авторизация
-    @Test(dataProvider="logins")
-    public void correctLogin(String param){
+    @Test(
+            dataProvider="logins",
+            description="Корректная авторизация",
+            groups="smoke")
+    public void correctLogin(String logins){
         basePage.open(BASE_URL);
-        loginPage.logIn(param);
-        Assert.assertTrue(loginPage.checkLogin());
+        loginPage.logIn(logins, STANDARD_PASSWORD);
+        Assert.assertFalse(loginPage.checkLogin(), "Пользователь остался на странице авторизации");
     }
+
 }
